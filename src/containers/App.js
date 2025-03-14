@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setSearchField, requestRobots } from "../actions";
+import { useEffect } from "react";
 
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
@@ -8,11 +9,6 @@ import Scroll from "../components/Scroll";
 import ErrorBoundry from "../components/ErrorBoundry";
 
 import "./App.css";
-
-console.log("CardList:", CardList);
-console.log("SearchBox:", SearchBox);
-console.log("Scroll:", Scroll);
-console.log("ErrorBoundry:", ErrorBoundry);
 
 // parameter state comes from index.js provider store state(rootReducers)
 const mapStateToProps = (state) => {
@@ -42,6 +38,7 @@ class App extends Component {
         const filteredRobots = robots.filter((robot) => {
             return robot.name.toLowerCase().includes(searchField.toLowerCase());
         });
+
         return (
             <div className="tc">
                 <SearchBox searchChange={onSearchChange} />
