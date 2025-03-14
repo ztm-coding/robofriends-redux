@@ -8,7 +8,11 @@ import Scroll from "../components/Scroll";
 import ErrorBoundry from "../components/ErrorBoundry";
 
 import "./App.css";
-import Header from "../components/Header";
+
+console.log("CardList:", CardList);
+console.log("SearchBox:", SearchBox);
+console.log("Scroll:", Scroll);
+console.log("ErrorBoundry:", ErrorBoundry);
 
 // parameter state comes from index.js provider store state(rootReducers)
 const mapStateToProps = (state) => {
@@ -40,7 +44,6 @@ class App extends Component {
         });
         return (
             <div className="tc">
-                <Header />
                 <SearchBox searchChange={onSearchChange} />
                 <Scroll>
                     {isPending ? (
