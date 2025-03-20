@@ -11,29 +11,31 @@ const mockRobots = [
 
 describe("CardList Component", () => {
     test("renders the correct number of Card components", () => {
-        render(<CardList robots={mockRobots} />);
-
+        const { asFragment } = render(<CardList robots={mockRobots} />);
         // Get all Card components by the test ID
         const cards = screen.getAllByTestId("card-component");
 
         // Assert that the number of rendered cards matches the length of mockRobots
         expect(cards).toHaveLength(mockRobots.length);
+        expect(asFragment()).toMatchSnapshot();
     });
 
     test("displays the correct names and emails", () => {
-        render(<CardList robots={mockRobots} />);
+        const { asFragment } = render(<CardList robots={mockRobots} />);
 
         // Check if each robot's name and email is displayed
         mockRobots.forEach((robot) => {
             expect(screen.getByText(robot.name)).toBeInTheDocument();
             expect(screen.getByText(robot.email)).toBeInTheDocument();
         });
+        expect(asFragment()).toMatchSnapshot();
     });
 
     test("renders nothing when robots array is empty", () => {
-        render(<CardList robots={[]} />);
+        const { asFragment } = render(<CardList robots={[]} />);
 
         // There should be no Card components when the array is empty
         expect(screen.queryByTestId("card-component")).not.toBeInTheDocument();
+        expect(asFragment()).toMatchSnapshot();
     });
 });
